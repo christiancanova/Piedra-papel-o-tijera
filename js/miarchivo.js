@@ -236,7 +236,7 @@ function vaciar(){
 //
 
 
-var retrievedObject = localStorage.getItem(clave);
+var retrievedObject = sessionStorage.getItem(clave);
 
 console.log('retrievedObject: ', JSON.parse(retrievedObject));
 
