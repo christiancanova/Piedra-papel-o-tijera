@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Piedra, papel o tijera </title>
+  <link rel="shortcut icon" href="./IMAGENES\tijerafavicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="./estilos/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@800&family=Philosopher:wght@700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
+  <script src="./js/miarchivo.js"></script> 
+</head>
+<body>
+    <header class="container-fluid" id="margin">  
+        <div class="row titulo0 m-0 p-0">   
+          <h1  class="col-12 titulo"> Piedra, papel o ¡tijera! </h1>    
+        </div>
+    </header>
+    <main>
+      
+       <div class="row m-0 p-0 seccion1"> <label for="domTextElement" >Nombre: </label>
+          <input type="text" class="form-control" id="domTextElement" placeholder="Eleonora" >  
+          <button type="button" class="btn btn-light"  onclick="getValueInput()"> 
+              INGRESAR 
+          </button> 
+        </div> 
+        <div class="row m-0 p-0 seccion4">
+          <p id="valueInput" ></p> ¿Quieres jugar conmigo? Haz click en piedra, papel o tijera. El que llega a dos puntos es el ganador. A Jugar!</p>      
+        </div>
+        
+      <div class="row m-0 p-0"> 
+        <div class="col-md-4 col-xs-12 seccion3"> 
+          <p><strong>PIEDRA</strong></p>  <img  class="img-fluid" src="./IMAGENES/piedra.png" alt="Imagen Top 100" id="imagen1" onclick="opcionPiedra()">
+        </div>
+        <div class="col-md-4 col-xs-12 seccion3">
+          <p><strong>PAPEL</strong></p> <img class="img-fluid" src="./IMAGENES/papel.png" alt="Imagen Top 100" id="imagen2" onclick="opcionPapel()">
+        </div>
+        <div class="col-md-4 col-xs-12 seccion3">
+          <p><strong>TIJERA</strong></p> <img class="img-fluid" src="./IMAGENES/tijera.png" alt="Imagen Top 100" id="imagen3" onclick="opcionTijera()">
+        </div>
+      </div>
+      <div class="row m-0 p-0 seccion5" >
+        <p  id="resultado"><strong></strong></p>   
+      </div>
+      <div class="row m-0 p-0 seccion6" >
+        <p  id="resultadofinal"><strong></strong></p>   
+      </div>
+      <div id="button_types" class="col-s-12 seccion8" >
+        <a  onclick="mostrar()" class="btn btn-success" id="botonHistorial" >Historial de juegos</a>  
+        <a  onclick="vaciar()" class="btn btn-danger" id="botonReiniciar">Reiniciar</a> 
+      </div>
+      <div  class="row m-0 p-0 seccion7" >  
+        <p id="datos"><strong></strong></p>
+      </div>
+    </main>                   
+    <footer class="row m-0 p-0">
+        <p class="col-12 footer"> </p>
+    </footer> 
+<script src="./js/miarchivo.js"></script>
+</body>  
+</html>
