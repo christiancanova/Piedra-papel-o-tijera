@@ -230,7 +230,6 @@ function mostrar(){
 } 
 ///Vaciar el storage
 function vaciar(){
-    document.getElementById("datos").innerText="El juego ha sido reiniciado";
     sessionStorage.clear();
     location. reload()
 }
