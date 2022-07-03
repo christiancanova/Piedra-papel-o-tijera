@@ -82,8 +82,11 @@ function opcionPiedra(){
             cambiofinal.classList.add('animate__animated', "animate__flip");
             cambiofinal.addEventListener('animationend', () => {
             cambiofinal.classList.remove('animate__animated', "animate__flip")
-            let fechas = fecha
-            let antecedente = nombreUsuario+": "+sumausuario+" "+"yo "+sumapc
+            let fechas = JSON.stringify(fecha)
+            let antecedente = JSON.stringify(nombreUsuario+": "+sumausuario+" "+"yo "+sumapc)
+            registros.push(nombreUsuario+": "+sumausuario+" "+"yo "+sumapc)
+            registros2.push(sumausuario)
+            registros3.push(sumausuario-sumapc)
             if(sessionStorage.getItem(fechas,antecedente))
                 { "none"}
                 else{
@@ -140,8 +143,11 @@ function opcionPapel(){
             cambiofinal.classList.add('animate__animated', "animate__flip");
             cambiofinal.addEventListener('animationend', () => {
             cambiofinal.classList.remove('animate__animated', "animate__flip")
-            let fechas = fecha
-            let antecedente = nombreUsuario+": "+sumausuario+" "+"yo "+sumapc
+            let fechas = JSON.stringify(fecha)
+            let antecedente = JSON.stringify(nombreUsuario+": "+sumausuario+" "+"yo "+sumapc)
+            registros.push(nombreUsuario+": "+sumausuario+" "+"yo "+sumapc)
+            registros2.push(sumausuario)
+            registros3.push(sumausuario-sumapc)
             if(sessionStorage.getItem(fechas,antecedente))
                 { "none"}
                 else{
@@ -197,8 +203,11 @@ function opcionTijera(){
             cambiofinal.classList.add('animate__animated', "animate__flip");
             cambiofinal.addEventListener('animationend', () => {
             cambiofinal.classList.remove('animate__animated', "animate__flip")
-            let fechas = fecha
-            let antecedente = nombreUsuario+": "+sumausuario+" "+"yo "+sumapc
+            let fechas = JSON.stringify(fecha)
+            let antecedente = JSON.stringify(nombreUsuario+": "+sumausuario+" "+"yo "+sumapc)
+            registros.push(nombreUsuario+": "+sumausuario+" "+"yo "+sumapc)
+            registros2.push(sumausuario)
+            registros3.push(sumausuario-sumapc)
             if(sessionStorage.getItem(fechas,antecedente))
                 { "none"}
                 else{
@@ -214,108 +223,50 @@ function opcionTijera(){
 }
 //Para mostar historial usamos el storage
 function mostrar(){
-
+    
+    
     const datos = document.getElementById("datos");
+    
     let tabla = document.createElement("table")
+    
         for (let index= 0; index < sessionStorage.length; index++) {
             
             let clave = sessionStorage.key(index)
             let fila = document.createElement("tr")
             fila.innerHTML =  `<td>${sessionStorage.getItem(clave)}</td> 
+                                <td>, con fecha••<td>
                                 <td>${clave}</td>`
             tabla.append(fila)
             datos.append(tabla)
-        } 
-          
+        }         
 } 
 ///Vaciar el storage
 function vaciar(){
     sessionStorage.clear();
     location. reload()
 }
-//
-
-
-var retrievedObject = sessionStorage.getItem(clave);
-
-console.log('retrievedObject: ', JSON.parse(retrievedObject));
-
-/**
-let registros = [];
-let registros2 = [];
-let registros3 = [];
-
-var cambio = document.getElementById("saludo");
-let extract = registros3.filter(registros3 => registros3 = Math.max());
-let indice = registros2.indexOf(5);
-cambio.textContent = "Hola "+nombreUsuario+", gracias por jugar al piedra, papel o tijera. Las diferencias de games en cada juego que has obtenido es: "+extract 
-
-    if (((indice)+1)<=2 && ((indice)+1)>0)
-    {
-    alert("Alcanzaste los 5 puntos en el juego: " +((indice)+1)+". Ganaste una estrella!");
-
-
-}
-
-
-function Antecedente (juego) {
-    this.juego = juego;
-   
-}
-//creamos los objetos
-const antecedente1 = new Antecedente(" Juego 1: ");
-const antecedente2 = new Antecedente(" Juego 2: ");
-const antecedente3 = new Antecedente(" Juego 3: ");
-const antecedente4 = new Antecedente(" Juego 4: ");
-const antecedente5 = new Antecedente(" Juego 5: ");
-const antecedente6 = new Antecedente(" Juego 6: ");
-const antecedente7 = new Antecedente(" Juego 7: ");
-const antecedente8 = new Antecedente(" Juego 8: ");
-const antecedente9 = new Antecedente(" Juego 9: ");
-const antecedente10 = new Antecedente(" Juego 10: ");
-
-//creamos la fecha y arrays de los juegos    
-let iterable = [antecedente1.juego, antecedente2.juego, antecedente3.juego, antecedente4.juego, antecedente5.juego, antecedente6.juego, antecedente7.juego, antecedente8.juego, antecedente9.juego, antecedente10.juego];
-let registros = [];
-let registros2 = [];
-let registros3 = [];
-
-//operacion final
-for (let value of iterable) {
-    let opcionfinal = prompt(nombreUsuario+", presiona 1 para continuar o 2 para salir del juego");
-    if(opcionfinal == "1"){
-    const hoy = new Date
-    let fecha = (hoy.toLocaleString())
-    operación()
-    alert(value+"El resultado acumulado es: "+nombreUsuario+": "+sumausuario+" "+"yo "+sumapc+" "+fecha);
-    registros.push(value+"El resultado acumulado es: "+nombreUsuario+": "+sumausuario+" "+"yo "+sumapc+" "+fecha);
-    registros2.push(sumausuario)
-    registros3.push(sumausuario-sumapc)
-    
-}
-    else if (opcionfinal == "2"){
-    break;
-}
-}
-
-
 //creamos el historial de diferenciales con un filtro     
 //hacemos busqueda y damos estrella en caso de objetivo logrado .. objetivo = llegar a 5 puntos antes del segundo juego            
-window.onload = function() {
-                var cambio = document.getElementById("saludo");
-                let extract = registros3.filter(registros3 => registros3 = Math.max());
-                let indice = registros2.indexOf(5);
-                cambio.textContent = "Hola "+nombreUsuario+", gracias por jugar al piedra, papel o tijera.Tu has realizado "+registros.length+" juegos y tus registros han sido: "+registros+". Las diferencias de games en cada juego que has obtenido es: "+extract 
-
-
-    if (((indice)+1)<=2 && ((indice)+1)>0)
-            {
-            alert("Alcanzaste los 5 puntos en el juego: " +((indice)+1)+". Ganaste una estrella!");
+//para informar cantidad de juegos
+let registros = [];
+//para saber si gano antes del segundo juego
+let registros2 = [];
+//para saber los diferenciales de juego
+let registros3 = [];
+//se informa estadistica
+function estadistica(){
+let extract = registros3.filter(registros3 => registros3 = Math.max());
+var cambio = document.getElementById("datos");
+cambio.textContent = "Has realizado "+registros.length+" juegos y tus registros han sido: "+registros+". Las diferencias de games en cada juego que has obtenido es: "+extract
+let indice = registros2.indexOf(2);
+var cambio2 = document.getElementById("datos2");
+//si gana en el primer juego, gana una estrella
+if (((indice)+1)<=1 && ((indice)+1)>0)
+{
+cambio2.textContent ="Haz ganado en el primer juego. Obtuviste una estrella!";
 }
 
 }
 
-
-*/   
 
            
