@@ -84,13 +84,13 @@ function opcionPiedra(){
             cambiofinal.classList.remove('animate__animated', "animate__flip")
             let fechas = JSON.stringify(fecha)
             let antecedente = JSON.stringify(nombreUsuario+": "+sumausuario+" "+"yo "+sumapc)
-            registros.push(nombreUsuario+": "+sumausuario+" "+"yo "+sumapc)
-            registros2.push(sumausuario)
-            registros3.push(sumausuario-sumapc)
             if(sessionStorage.getItem(fechas,antecedente))
                 { "none"}
                 else{
                     sessionStorage.setItem(fechas,antecedente)
+                    registros.push(nombreUsuario+": "+sumausuario+" "+"yo "+sumapc)
+                    registros2.push(sumausuario)
+                    registros3.push(sumausuario-sumapc)
                     sumapc = sumapc - sumapc
                     sumausuario = sumausuario - sumausuario
                 }
@@ -145,13 +145,13 @@ function opcionPapel(){
             cambiofinal.classList.remove('animate__animated', "animate__flip")
             let fechas = JSON.stringify(fecha)
             let antecedente = JSON.stringify(nombreUsuario+": "+sumausuario+" "+"yo "+sumapc)
-            registros.push(nombreUsuario+": "+sumausuario+" "+"yo "+sumapc)
-            registros2.push(sumausuario)
-            registros3.push(sumausuario-sumapc)
             if(sessionStorage.getItem(fechas,antecedente))
                 { "none"}
                 else{
                     sessionStorage.setItem(fechas,antecedente)
+                    registros.push(nombreUsuario+": "+sumausuario+" "+"yo "+sumapc)
+                    registros2.push(sumausuario)
+                    registros3.push(sumausuario-sumapc)
                     sumapc = sumapc - sumapc
                     sumausuario = sumausuario - sumausuario
                 }
@@ -205,13 +205,14 @@ function opcionTijera(){
             cambiofinal.classList.remove('animate__animated', "animate__flip")
             let fechas = JSON.stringify(fecha)
             let antecedente = JSON.stringify(nombreUsuario+": "+sumausuario+" "+"yo "+sumapc)
-            registros.push(nombreUsuario+": "+sumausuario+" "+"yo "+sumapc)
-            registros2.push(sumausuario)
-            registros3.push(sumausuario-sumapc)
+            
             if(sessionStorage.getItem(fechas,antecedente))
                 { "none"}
                 else{
                     sessionStorage.setItem(fechas,antecedente)
+                    registros.push(nombreUsuario+": "+sumausuario+" "+"yo "+sumapc)
+                    registros2.push(sumausuario)
+                    registros3.push(sumausuario-sumapc)
                     sumapc = sumapc - sumapc
                     sumausuario = sumausuario - sumausuario
                 }
@@ -229,12 +230,11 @@ function mostrar(){
     
     let tabla = document.createElement("table")
     
-        for (let index= 0; index < sessionStorage.length; index++) {
-            
+        for (let index= 0; index < sessionStorage.length; index++) {   
             let clave = sessionStorage.key(index)
             let fila = document.createElement("tr")
             fila.innerHTML =  `<td>${sessionStorage.getItem(clave)}</td> 
-                                <td>, con fecha••<td>
+                                <td>, con fecha:<td>
                                 <td>${clave}</td>`
             tabla.append(fila)
             datos.append(tabla)
@@ -260,7 +260,7 @@ var cambio = document.getElementById("datos");
 cambio.textContent = "Has realizado "+registros.length+" juegos y tus registros han sido: "+registros+". Las diferencias de games en cada juego que has obtenido es: "+extract
 let indice = registros2.indexOf(2);
 var cambio2 = document.getElementById("datos2");
-//si gana en el primer juego, gana una estrella
+//si el usuario gana en el primer juego, gana una estrella
 if (((indice)+1)<=1 && ((indice)+1)>0)
 {
 cambio2.textContent ="Haz ganado en el primer juego. Obtuviste una estrella!";
