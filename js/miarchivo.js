@@ -1,9 +1,12 @@
+
  //Se consigna nombre
- const getValueInput = () =>{
+ 
+let nombreUsuario = "Tu"
+const getValueInput = () =>{
     let nombre = document.getElementById("domTextElement").value; 
     document.getElementById("valueInput").innerHTML = nombre; 
+    nombreUsuario = `${nombre}`
 } 
-let nombreUsuario = "Tu"
 //Valor aleatorio de piedra, papel o tijera
 function generateRandom(min = 1, max = 4){
     let difference = max - min;
@@ -224,7 +227,7 @@ function opcionTijera(){
 }
 //Para mostar historial usamos el storage
 function mostrar(){
-    
+       
     
     const datos = document.getElementById("datos");
     
@@ -232,18 +235,34 @@ function mostrar(){
     
         for (let index= 0; index < sessionStorage.length; index++) {   
             let clave = sessionStorage.key(index)
+            let valor = sessionStorage.getItem(clave)
+            let clave1 = JSON.parse(clave) 
+            let valor1 = JSON.parse(valor) 
+            let valor2 = ", con fecha:"
             let fila = document.createElement("tr")
-            fila.innerHTML =  `<td>${sessionStorage.getItem(clave)}</td> 
-                                <td>, con fecha:<td>
-                                <td>${clave}</td>`
+            fila.innerHTML =  `<td>${valor1}</td> 
+                                <td>${valor2}</td>
+                                <td>${clave1}</td>`
             tabla.append(fila)
-            datos.append(tabla)
+            Swal.fire(tabla)
         }         
 } 
 ///Vaciar el storage
 function vaciar(){
-    sessionStorage.clear();
-    location. reload()
+    Swal.fire({
+        title: 'Estas seguro?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, quiero reiniciar!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            sessionStorage.clear();
+            location. reload()
+        }
+    })
+
 }
 //creamos el historial de diferenciales con un filtro     
 //hacemos busqueda y damos estrella en caso de objetivo logrado .. objetivo = llegar a 5 puntos antes del segundo juego            
@@ -256,8 +275,7 @@ let registros3 = [];
 //se informa estadistica
 function estadistica(){
 let extract = registros3.filter(registros3 => registros3 = Math.max());
-var cambio = document.getElementById("datos");
-cambio.textContent = "Has realizado "+registros.length+" juegos y tus registros han sido: "+registros+". Las diferencias de games en cada juego que has obtenido es: "+extract
+Swal.fire("Has realizado "+registros.length+" juegos y las diferencias de games han sido: "+extract)
 let indice = registros2.indexOf(2);
 var cambio2 = document.getElementById("datos2");
 //si el usuario gana en el primer juego, gana una estrella

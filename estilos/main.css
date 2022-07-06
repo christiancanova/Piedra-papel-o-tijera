@@ -154,7 +154,7 @@
 .seccion7 {
     display: flex;
     align-items: center;
-    color: #02c8a7;
+    color: #f9be02;
     justify-content: center;
     background-color: white;
     padding-top: 40px;
@@ -200,7 +200,7 @@
   .seccion3 {
     font-size: 20px; }
   .seccion4 {
-    font-size: 20px; }
+    font-size: 15px; }
   .seccion5 {
     font-size: 20px; }
   .seccion6 {
@@ -209,8 +209,8 @@
 @media only screen and (max-width: 575px) {
   /*ESTRUCTURA COMPARTIDA*/
   .titulo {
-    font-size: 25px;
-    height: 60px; }
+    font-size: 23px;
+    height: 40px; }
   .footer {
     font-size: 8px;
     padding: 5px;
@@ -223,5 +223,13 @@
     align-items: center;
     align-content: space-around;
     height: 215px; }
+  .seccion4{
+    height: 100px;
   }
+  .seccion5 {
+    font-size: 15px; }
+
+  .seccion6 {
+    font-size: 15px; }
+}
 }
