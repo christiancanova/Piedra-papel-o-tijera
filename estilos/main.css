@@ -232,4 +232,30 @@
   .seccion6 {
     font-size: 15px; }
 }
+
+@media only screen and (max-width: 400px) {
+  /*ESTRUCTURA COMPARTIDA*/
+  .titulo {
+    font-size: 12px;
+    height: 20px; }
+ 
+  /*INDEX*/
+  .seccion2 {
+    font-size: 13px;
+    display: flex;
+    margin: 0%;
+    align-items: center;
+    align-content: space-around;
+    height: 215px; }
+  .seccion4{
+    height: 100px;
+  }
+  .seccion5 {
+    font-size: 12px; }
+
+  .seccion6 {
+    font-size: 15px; }
+  .seccion1 {
+    font-size: 15px; }
+}
 }
