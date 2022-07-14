@@ -1,11 +1,28 @@
-
- //Se consigna nombre
- 
+//Se consigna nombre y carga...
 let nombreUsuario = "Tu"
 const getValueInput = () =>{
-    let nombre = document.getElementById("domTextElement").value; 
-    document.getElementById("valueInput").innerHTML = nombre; 
-    nombreUsuario = `${nombre}`
+    
+    return new Promise ((resolve, reject) =>{      
+        resolve(
+
+        setTimeout (() =>{
+            let timerInterval
+            Swal.fire({
+              title: 'Cargando...',
+              timer: 2000,
+              timerProgressBar: true,
+              willClose: () => {
+                clearInterval(timerInterval)
+              }
+            }).then((result) => {
+                let nombre = document.getElementById("domTextElement").value; 
+                document.getElementById("valueInput").innerHTML = nombre; 
+                nombreUsuario = `${nombre}`
+            })
+            }
+        )
+        )
+    })
 } 
 //Valor aleatorio de piedra, papel o tijera
 function generateRandom(min = 1, max = 4){
@@ -227,10 +244,7 @@ function opcionTijera(){
 }
 //Para mostar historial usamos el storage
 function mostrar(){
-       
-    
     const datos = document.getElementById("datos");
-    
     let tabla = document.createElement("table")
     
         for (let index= 0; index < sessionStorage.length; index++) {   
@@ -245,6 +259,7 @@ function mostrar(){
                                 <td>${clave1}</td>`
             tabla.append(fila)
             Swal.fire(tabla)
+           
         }         
 } 
 ///Vaciar el storage
@@ -262,29 +277,52 @@ function vaciar(){
             location. reload()
         }
     })
-
 }
 //creamos el historial de diferenciales con un filtro     
-//hacemos busqueda y damos estrella en caso de objetivo logrado .. objetivo = llegar a 5 puntos antes del segundo juego            
+//hacemos busqueda y damos estrella en caso de objetivo logrado .. objetivo = ganar el primer juego          
 //para informar cantidad de juegos
 let registros = [];
-//para saber si gano antes del segundo juego
+//para saber si gano en el primer juego
 let registros2 = [];
 //para saber los diferenciales de juego
 let registros3 = [];
-//se informa estadistica
+//se informa estadistica y se la opción de guardar la estadistica en una API
 function estadistica(){
 let extract = registros3.filter(registros3 => registros3 = Math.max());
-Swal.fire("Has realizado "+registros.length+" juegos y las diferencias de games han sido: "+extract)
+Swal.fire ({title: "Has realizado "+registros.length+" juegos y las diferencias de games han sido: "+extract,
+    showCancelButton: true,
+    confirmButtonText: 'Guardar estadística',
+  }).then((result) => {
+    
+    if (result.isConfirmed) {
+        const data = {
+            title: nombreUsuario,
+            body: registros.length+" juegos y diferencias de games: "+extract
+        }
+    
+        fetch('https://jsonplaceholder.typicode.com/posts',{
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            }
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+            Swal.fire('Has Guardado! '+data.body, '', 'success')
+
+        })      
+    } 
+  })        
 let indice = registros2.indexOf(2);
 var cambio2 = document.getElementById("datos2");
-//si el usuario gana en el primer juego, gana una estrella
+//presionando el boton "estadistica", si el usuario gana en el primer juego, texto informativo gana una estrella, luego de 8 segundos el texto informativo desaparace..
 if (((indice)+1)<=1 && ((indice)+1)>0)
 {
 cambio2.textContent ="Haz ganado en el primer juego. Obtuviste una estrella!";
+    setTimeout (() =>{
+    cambio2.classList.add('animate__animated', "animate__bounceOutLeft");
+    },8000)
 }
-
 }
-
-
-           
