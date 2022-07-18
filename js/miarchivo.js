@@ -1,7 +1,6 @@
-//Se consigna nombre y carga...
+//Se consigna nombre y se produce la carga... si no consigna nombre se utiliza el "tu". Utilizamos librería sweet alert
 let nombreUsuario = "Tu"
 const getValueInput = () =>{
-    
     return new Promise ((resolve, reject) =>{      
         resolve(
 
@@ -24,7 +23,7 @@ const getValueInput = () =>{
         )
     })
 } 
-//Valor aleatorio de piedra, papel o tijera
+//Para generar valor aleatorio de piedra, papel o tijera
 function generateRandom(min = 1, max = 4){
     let difference = max - min;
     let rand = Math.random();
@@ -32,7 +31,7 @@ function generateRandom(min = 1, max = 4){
     rand = rand + min;
     return rand;
 }
-//función para sumar para pc
+//función para sumar punto para pc
 var sumapc = parseInt(0);
 function incrementarpc()
     {
@@ -42,10 +41,11 @@ function incrementarpc()
     {
     num = 1;
     sumapc = sumapc + num;
-    n = n + 1;
+    //operador avanzado
+    n++;
     }
 }
-//función para sumar para usuario
+//función para sumar punto para el usuario
 var sumausuario = parseInt(0);
 function incrementarusuario()
     {
@@ -55,10 +55,11 @@ function incrementarusuario()
     {
     num = 1;
     sumausuario = sumausuario + num;
-    n = n + 1;
+    //operador avanzado
+    n++;
     }
 }
-//Si elección es piedra
+//Si la elección es piedra
 function opcionPiedra(){
         var cambio = document.getElementById("resultado");
         let imagen1 = document.getElementById('imagen1');
@@ -235,12 +236,9 @@ function opcionTijera(){
                     registros3.push(sumausuario-sumapc)
                     sumapc = sumapc - sumapc
                     sumausuario = sumausuario - sumausuario
-                }
-            
+                }          
             })
         } 
-       
-           
 }
 //Para mostar historial usamos el storage
 function mostrar(){
@@ -262,7 +260,7 @@ function mostrar(){
            
         }         
 } 
-///Vaciar el storage
+///Para vaciar el storage
 function vaciar(){
     Swal.fire({
         title: 'Estas seguro?',
@@ -280,26 +278,25 @@ function vaciar(){
 }
 //creamos el historial de diferenciales con un filtro     
 //hacemos busqueda y damos estrella en caso de objetivo logrado .. objetivo = ganar el primer juego          
-//para informar cantidad de juegos
+//array para informar cantidad de juegos
 let registros = [];
-//para saber si gano en el primer juego
+//para saber si ganó en el primer juego
 let registros2 = [];
-//para saber los diferenciales de juego
+//array para saber los diferenciales de juego
 let registros3 = [];
-//se informa estadistica y se la opción de guardar la estadistica en una API
+//se informa estadistica y se da opción de guardar la estadistica en una API externa. Luego devolvemos el resultado guardado.
 function estadistica(){
 let extract = registros3.filter(registros3 => registros3 = Math.max());
 Swal.fire ({title: "Has realizado "+registros.length+" juegos y las diferencias de games han sido: "+extract,
     showCancelButton: true,
     confirmButtonText: 'Guardar estadística',
   }).then((result) => {
-    
     if (result.isConfirmed) {
+        //creamos objeto
         const data = {
             title: nombreUsuario,
             body: registros.length+" juegos y diferencias de games: "+extract
         }
-    
         fetch('https://jsonplaceholder.typicode.com/posts',{
             method: 'POST',
             body: JSON.stringify(data),
@@ -311,13 +308,12 @@ Swal.fire ({title: "Has realizado "+registros.length+" juegos y las diferencias 
         .then((data) => {
             console.log(data);
             Swal.fire('Has Guardado! '+data.body, '', 'success')
-
         })      
     } 
   })        
 let indice = registros2.indexOf(2);
 var cambio2 = document.getElementById("datos2");
-//presionando el boton "estadistica", si el usuario gana en el primer juego, texto informativo gana una estrella, luego de 8 segundos el texto informativo desaparace..
+//presionando el boton "estadistica", si el usuario gana en el primer juego, texto informativo "gana una estrella", luego de 8 segundos el texto informativo desaparace..
 if (((indice)+1)<=1 && ((indice)+1)>0)
 {
 cambio2.textContent ="Haz ganado en el primer juego. Obtuviste una estrella!";
